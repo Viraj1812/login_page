@@ -11,30 +11,33 @@ class SecondPage extends StatelessWidget {
         title: const Text('Second Page'),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 100,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 50,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: SizedBox(
-                      width: 0.5 *
-                          MediaQuery.of(context)
-                              .size
-                              .width, // Set the desired width
-                      child: Center(
-                        child: Text('Horizontal Item $index'),
+        child: SingleChildScrollView(
+          controller: ScrollController(),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 100,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 50,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: SizedBox(
+                        width: 0.5 *
+                            MediaQuery.of(context)
+                                .size
+                                .width, // Set the desired width
+                        child: Center(
+                          child: Text('Horizontal Item $index'),
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
-            Expanded(
-              child: ListView.builder(
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 itemCount: 50,
                 itemBuilder: (context, index) {
@@ -43,19 +46,19 @@ class SecondPage extends StatelessWidget {
                   );
                 },
               ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, RoutesName.thirdPage);
-              },
-              child: const Text(
-                'Next',
+              const SizedBox(
+                height: 30,
               ),
-            )
-          ],
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, RoutesName.forthPage);
+                },
+                child: const Text(
+                  'Next',
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:login_page/utils/routes_name.dart';
 
@@ -11,7 +12,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController usercontroller = TextEditingController();
-  String password = '';
+  TextEditingController passwordcontroller = TextEditingController();
+  FocusNode f1 = FocusNode();
+  FocusNode f2 = FocusNode();
+  bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +40,10 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               controller: usercontroller,
               maxLength: 15,
+              focusNode: f1,
+              // onSubmitted: (value) {
+              //   FocusScope.of(context).requestFocus(f2);
+              // },
               decoration: const InputDecoration(
                   labelText: 'User Name',
                   hintText: 'Enter User Name',
@@ -43,23 +51,39 @@ class _LoginPageState extends State<LoginPage> {
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8)),
                       borderSide: BorderSide(color: Colors.white))),
+              textInputAction: TextInputAction.next,
             ),
             const SizedBox(
               height: 30,
             ),
             TextField(
-              onChanged: (text) {
-                password = text;
-              },
+              controller: passwordcontroller,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: TextInputType.number,
               maxLength: 12,
-              obscureText: true,
-              decoration: const InputDecoration(
+              obscureText: _obscureText,
+              onSubmitted: (value) {
+                _handleLogin();
+                print("method call");
+              },
+              decoration: InputDecoration(
                   labelText: 'Password',
                   hintText: 'Enter Password',
-                  hintStyle: TextStyle(
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      // Toggle the visibility of the password
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                  ),
+                  hintStyle: const TextStyle(
                     color: Colors.grey,
                   ),
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8)),
                       borderSide: BorderSide(color: Colors.grey))),
             ),
@@ -68,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                (usercontroller.text == '' || password == '')
+                (usercontroller.text == '' || passwordcontroller.text == '')
                     ? Fluttertoast.showToast(
                         msg: 'Please enter username and password',
                         gravity: ToastGravity.BOTTOM,
@@ -76,10 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                         timeInSecForIosWeb: 1,
                         textColor: Colors.white,
                         fontSize: 16.0)
-                    : Navigator.pushNamed(
-                        context,
-                        RoutesName.homePage,
-                      );
+                    : _handleLogin();
               },
               child: const Text(
                 'Login',
@@ -89,6 +110,14 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
+    );
+  }
+
+  void _handleLogin() {
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      RoutesName.homePage,
+      (Route<dynamic> route) => false,
     );
   }
 }

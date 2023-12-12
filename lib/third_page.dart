@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:login_page/home_page.dart';
-import 'package:login_page/login_page.dart';
 import 'package:login_page/utils/routes_name.dart';
 
 class ThirdPage extends StatelessWidget {

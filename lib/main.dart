@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:login_page/login_page.dart';
+import 'package:login_page/utils/routes.dart';
+import 'package:login_page/utils/routes_name.dart';
 
 void main() {
   runApp(
     const MaterialApp(
-      home: LoginPage(),
+      initialRoute: RoutesName.loginPage,
+      onGenerateRoute: Routes.generateRoute,
     ),
   );
 }

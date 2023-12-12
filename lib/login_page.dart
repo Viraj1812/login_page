@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:login_page/home_page.dart';
+import 'package:login_page/utils/routes_name.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController usercontroller = TextEditingController();
-  TextEditingController passwordcontroller = TextEditingController();
+  String password = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,10 +35,11 @@ class _LoginPageState extends State<LoginPage> {
             ),
             TextField(
               controller: usercontroller,
+              maxLength: 15,
               decoration: const InputDecoration(
                   labelText: 'User Name',
-                  hintText: 'User Name',
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintText: 'Enter User Name',
+                  hintStyle: TextStyle(color: Colors.grey),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8)),
                       borderSide: BorderSide(color: Colors.white))),
@@ -47,9 +48,17 @@ class _LoginPageState extends State<LoginPage> {
               height: 30,
             ),
             TextField(
-              controller: passwordcontroller,
+              onChanged: (text) {
+                password = text;
+              },
+              maxLength: 12,
+              obscureText: true,
               decoration: const InputDecoration(
                   labelText: 'Password',
+                  hintText: 'Enter Password',
+                  hintStyle: TextStyle(
+                    color: Colors.grey,
+                  ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8)),
                       borderSide: BorderSide(color: Colors.grey))),
@@ -59,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                (usercontroller.text == '' || passwordcontroller.text == '')
+                (usercontroller.text == '' || password == '')
                     ? Fluttertoast.showToast(
                         msg: 'Please enter username and password',
                         gravity: ToastGravity.BOTTOM,
@@ -67,13 +76,9 @@ class _LoginPageState extends State<LoginPage> {
                         timeInSecForIosWeb: 1,
                         textColor: Colors.white,
                         fontSize: 16.0)
-                    : Navigator.push(
+                    : Navigator.pushNamed(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return const HomePage();
-                          },
-                        ),
+                        RoutesName.homePage,
                       );
               },
               child: const Text(

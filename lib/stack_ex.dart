@@ -51,7 +51,14 @@ class StackEX extends StatelessWidget {
           alignment: Alignment.center,
           child: ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, RoutesName.secondPage);
+              Navigator.pushNamed(
+                context,
+                RoutesName.secondPage,
+                arguments: {
+                  'Name': 'Viraj',
+                  'Surname': 'Vasani',
+                },
+              );
             },
             child: const Text('Next'),
           ),

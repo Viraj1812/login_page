@@ -7,4 +7,5 @@ class RoutesName {
   static const String forthPage = 'forth_page';
   static const String linearProgress = 'linear_Progress';
   static const String tabber = 'tabber';
+  static const String slider = 'slider';
 }

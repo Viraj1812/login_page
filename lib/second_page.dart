@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/utils/routes_name.dart';
 
-class SecondPage extends StatelessWidget {
-  const SecondPage({super.key});
+class SecondPage extends StatefulWidget {
+  dynamic data;
+  SecondPage({super.key, required this.data});
 
+  @override
+  State<SecondPage> createState() => _SecondPageState();
+}
+
+class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Page'),
+        title: Text(widget.data['Name'] + " " + widget.data['Surname']),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

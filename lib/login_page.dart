@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
               maxLength: 12,
               obscureText: _obscureText,
               onSubmitted: (value) {
-                _handleLogin();
+                showAlertDialog(context);
               },
               decoration: InputDecoration(
                   labelText: 'Password',
@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                     //     textColor: Colors.white,
                     //     fontSize: 16.0)
                     ? _showToast(context, 'Please enter username and password')
-                    : _handleLogin();
+                    : showAlertDialog(context);
               },
               child: const Text(
                 'Login',
@@ -135,6 +135,33 @@ class _LoginPageState extends State<LoginPage> {
       context,
       RoutesName.homePage,
       (Route<dynamic> route) => false,
+    );
+  }
+
+  void showAlertDialog(BuildContext context) {
+    // Create button
+    Widget okButton = TextButton(
+      child: const Text("OK"),
+      onPressed: () {
+        _handleLogin();
+      },
+    );
+
+    // Create AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Login Successful"),
+      content: const Text("Press OK to move forward"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

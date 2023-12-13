@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:login_page/utils/routes_name.dart';
 
 class LoginPage extends StatefulWidget {
@@ -59,12 +59,11 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               controller: passwordcontroller,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               maxLength: 12,
               obscureText: _obscureText,
               onSubmitted: (value) {
                 _handleLogin();
-                print("method call");
               },
               decoration: InputDecoration(
                   labelText: 'Password',
@@ -93,13 +92,14 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               onPressed: () {
                 (usercontroller.text == '' || passwordcontroller.text == '')
-                    ? Fluttertoast.showToast(
-                        msg: 'Please enter username and password',
-                        gravity: ToastGravity.BOTTOM,
-                        toastLength: Toast.LENGTH_LONG,
-                        timeInSecForIosWeb: 1,
-                        textColor: Colors.white,
-                        fontSize: 16.0)
+                    // ? Fluttertoast.showToast(
+                    //     msg: 'Please enter username and password',
+                    //     gravity: ToastGravity.BOTTOM,
+                    //     toastLength: Toast.LENGTH_LONG,
+                    //     timeInSecForIosWeb: 1,
+                    //     textColor: Colors.white,
+                    //     fontSize: 16.0)
+                    ? _showToast(context, 'Please enter username and password')
                     : _handleLogin();
               },
               child: const Text(
@@ -111,6 +111,23 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void _showToast(BuildContext context, String message) {
+    var snackbar = SnackBar(
+      content: Text(message),
+      duration: const Duration(seconds: 2),
+      shape: const BeveledRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8))),
+      backgroundColor: Colors.black,
+      behavior: SnackBarBehavior.floating,
+      elevation: 20,
+      showCloseIcon: true,
+      closeIconColor: Colors.red,
+      dismissDirection: DismissDirection.horizontal,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
 
   void _handleLogin() {

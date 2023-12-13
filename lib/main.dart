@@ -5,7 +5,7 @@ import 'package:login_page/utils/routes_name.dart';
 void main() {
   runApp(
     const MaterialApp(
-      initialRoute: RoutesName.loginPage,
+      initialRoute: RoutesName.splashScreen,
       onGenerateRoute: Routes.generateRoute,
     ),
   );

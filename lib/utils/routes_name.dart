@@ -1,4 +1,5 @@
 class RoutesName {
+  static const String splashScreen = 'splash_screen';
   static const String loginPage = 'login_page';
   static const String homePage = 'home_page';
   static const String secondPage = 'second_page';

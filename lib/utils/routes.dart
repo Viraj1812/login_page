@@ -4,6 +4,7 @@ import 'package:login_page/home_page.dart';
 import 'package:login_page/linear_progress.dart';
 import 'package:login_page/login_page.dart';
 import 'package:login_page/second_page.dart';
+import 'package:login_page/splash_screen.dart';
 import 'package:login_page/tabbar.dart';
 import 'package:login_page/third_page.dart';
 import 'package:login_page/utils/routes_name.dart';
@@ -11,6 +12,8 @@ import 'package:login_page/utils/routes_name.dart';
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case RoutesName.splashScreen:
+        return MaterialPageRoute(builder: (context) => const SplashScreen());
       case RoutesName.loginPage:
         return MaterialPageRoute(builder: (context) => const LoginPage());
       case RoutesName.homePage:

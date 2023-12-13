@@ -16,6 +16,8 @@ class LinearProgressIndicatorAppState
     extends State<LinearProgressIndicatorApp> {
   bool _loading = true;
   double _progressValue = 0.0;
+  bool valuefirst = false;
+  bool valuesecond = false;
 
   @override
   void initState() {
@@ -53,6 +55,38 @@ class LinearProgressIndicatorAppState
                       style: TextStyle(fontSize: 25)),
             ),
             Text('${(_progressValue * 100).round()}%'),
+            const SizedBox(
+              height: 50,
+            ),
+            const Text(
+              'Checkbox with Header and Subtitle',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            CheckboxListTile(
+              secondary: const Icon(Icons.alarm),
+              title: const Text('Ringing at 4:30 AM every day'),
+              subtitle: const Text('Ringing after 12 hours'),
+              shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+              value: valuefirst,
+              onChanged: (value) {
+                setState(() {
+                  valuefirst = value!;
+                });
+              },
+            ),
+            CheckboxListTile(
+              controlAffinity: ListTileControlAffinity.trailing,
+              secondary: const Icon(Icons.alarm),
+              title: const Text('Ringing at 5:00 AM every day'),
+              subtitle: const Text('Ringing after 12 hours'),
+              value: valuesecond,
+              onChanged: (value) {
+                setState(() {
+                  valuesecond = value!;
+                });
+              },
+            ),
           ],
         ),
       ),

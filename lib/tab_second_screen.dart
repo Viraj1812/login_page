@@ -9,10 +9,11 @@ class TabSecondScreen extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Center(
             child: Text(
-              'It is a contact tab, which is responsible for displaying the contacts stored in your mobile',
+              'Tab 2',
               style: TextStyle(fontSize: 32.0, color: Colors.black),
             ),
           ),

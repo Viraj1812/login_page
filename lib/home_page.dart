@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:login_page/utils/routes_name.dart';
+import 'package:login_page/stack_ex.dart';
+import 'package:login_page/tab_first_screen.dart';
+import 'package:login_page/tab_second_screen.dart';
+// import 'package:login_page/utils/routes_name.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  var widgetList = [
+    const StackEX(),
+    const TabFirstScreen(),
+    const TabSecondScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -51,58 +67,37 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home Page'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Stack(
-            children: [
-              Container(
-                width: 200,
-                height: 200,
-                color: Colors.blueGrey,
-              ),
-              Container(
-                width: 100,
-                height: 100,
-                color: Colors.grey,
-              ),
-              Positioned(
-                top: 100,
-                left: 100,
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  color: Colors.grey,
-                ),
-              ),
-              const Positioned(
-                top: 80,
-                left: 68,
-                child: Text(
-                  'Stack',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                  ),
-                ),
-              )
-            ],
+      body: widgetList[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 10,
+        onTap: _onItemTapped,
+        currentIndex: _selectedIndex,
+        iconSize: 40,
+        items: [
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.contact_page),
+            label: 'Contact',
+            backgroundColor: Colors.blue.shade400,
           ),
-          const SizedBox(
-            height: 30,
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.inbox),
+            label: 'Inbox',
+            backgroundColor: Colors.blue.shade400,
+            tooltip: 'Inbox',
           ),
-          Container(
-            alignment: Alignment.center,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, RoutesName.secondPage);
-              },
-              child: const Text('Next'),
-            ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.mail),
+            label: 'Contact',
+            backgroundColor: Colors.blue.shade400,
           ),
         ],
       ),
     );
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 }

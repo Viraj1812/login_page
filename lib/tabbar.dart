@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/calander.dart';
+import 'package:login_page/date_picker.dart';
 import 'package:login_page/tab_first_screen.dart';
 import 'package:login_page/tab_second_screen.dart';
 
@@ -54,8 +56,8 @@ class Tabber extends StatelessWidget {
           children: [
             TabFirstScreen(),
             TabSecondScreen(),
-            TabFirstScreen(),
-            TabSecondScreen(),
+            DatePickerEx(),
+            HomeCalendarPage(),
           ],
         ),
       ),

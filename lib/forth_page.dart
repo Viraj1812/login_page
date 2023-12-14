@@ -8,7 +8,27 @@ class ForthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Grid View'),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.settings,
+            color: Colors.white,
+          ),
+          onPressed: () {},
+        ),
+        title: const Text(
+          'Grid View',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+            onPressed: () {},
+          ),
+        ],
+        flexibleSpace: MyFlexibleSpace(),
       ),
       body: SafeArea(
         child: Column(
@@ -47,6 +67,20 @@ class ForthPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class MyFlexibleSpace extends StatelessWidget {
+  const MyFlexibleSpace({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FlexibleSpaceBar(
+      background: Image.asset(
+        'assets/images/temp.jpg',
+        fit: BoxFit.cover,
       ),
     );
   }

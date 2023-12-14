@@ -153,31 +153,132 @@ class _SliderScreenState extends State<SliderScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-              padding: const EdgeInsets.all(10),
-              margin: const EdgeInsets.all(5),
+      body: SingleChildScrollView(
+        controller: ScrollController(),
+        child: Column(
+          children: [
+            Container(
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.all(5),
+                alignment: Alignment.center,
+                constraints: const BoxConstraints.expand(height: 225),
+                child: imageSlider(context)),
+            Container(
               alignment: Alignment.center,
-              constraints: const BoxConstraints.expand(height: 225),
-              child: imageSlider(context)),
-          Container(
-            alignment: Alignment.center,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  RoutesName.thirdPage,
-                  arguments: {
-                    'Name': 'Viraj',
-                    'Surname': 'Vasani',
-                  },
-                );
-              },
-              child: const Text('Next'),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    RoutesName.thirdPage,
+                    arguments: {
+                      'Name': 'Viraj',
+                      'Surname': 'Vasani',
+                    },
+                  );
+                },
+                child: const Text('Next'),
+              ),
             ),
-          ),
-        ],
+            Container(
+              margin: const EdgeInsets.all(20),
+              child: Table(
+                defaultColumnWidth: const FixedColumnWidth(120.0),
+                border: TableBorder.all(
+                    color: Colors.black, style: BorderStyle.solid, width: 2),
+                children: const [
+                  TableRow(children: [
+                    Column(children: [
+                      Text('Website', style: TextStyle(fontSize: 20.0))
+                    ]),
+                    Column(children: [
+                      Text('Tutorial', style: TextStyle(fontSize: 20.0))
+                    ]),
+                    Column(children: [
+                      Text('Review', style: TextStyle(fontSize: 20.0))
+                    ]),
+                  ]),
+                  TableRow(
+                    children: [
+                      Column(children: [Text('Javatpoint')]),
+                      Column(children: [Text('Flutter')]),
+                      Column(children: [Text('5*')]),
+                    ],
+                  ),
+                  TableRow(children: [
+                    Column(children: [Text('Javatpoint')]),
+                    Column(children: [Text('MySQL')]),
+                    Column(children: [Text('5*')]),
+                  ]),
+                  TableRow(children: [
+                    Column(children: [Text('Javatpoint')]),
+                    Column(children: [Text('ReactJS')]),
+                    Column(children: [Text('5*')]),
+                  ]),
+                ],
+              ),
+            ),
+            ListView(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              children: [
+                const Center(
+                  child: Text(
+                    'People-Chart',
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                DataTable(
+                  columns: const [
+                    DataColumn(
+                        label: Text('ID',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold))),
+                    DataColumn(
+                        label: Text('Name',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold))),
+                    DataColumn(
+                        label: Text('Profession',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold))),
+                  ],
+                  rows: const [
+                    DataRow(cells: [
+                      DataCell(Text('1')),
+                      DataCell(Text('Stephen')),
+                      DataCell(Text('Actor')),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text('5')),
+                      DataCell(Text('John')),
+                      DataCell(Text('Student')),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text('10')),
+                      DataCell(Text('Harry')),
+                      DataCell(Text('Leader')),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text('15')),
+                      DataCell(Text('Peter')),
+                      DataCell(Text('Scientist')),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text('15')),
+                      DataCell(Text('Peter')),
+                      DataCell(Text('Scientist')),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text('15')),
+                      DataCell(Text('Peter')),
+                      DataCell(Text('Scientist')),
+                    ]),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

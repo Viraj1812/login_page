@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/drop_down.dart';
 import 'package:login_page/switch_screen.dart';
 import 'package:login_page/utils/routes_name.dart';
 
@@ -7,6 +8,10 @@ class StackEX extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var colors = [
+      Colors.pink,
+      Colors.purple,
+    ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
@@ -49,8 +54,16 @@ class StackEX extends StatelessWidget {
           height: 30,
         ),
         Container(
+          decoration: BoxDecoration(
+            border: Border.all(width: 2),
+            borderRadius: BorderRadius.circular(8),
+            gradient: LinearGradient(colors: colors),
+            // image: const DecorationImage(
+            //   image: AssetImage('assets/images/temp.jpg'),
+            // ),
+          ),
           alignment: Alignment.center,
-          child: ElevatedButton(
+          child: MaterialButton(
             onPressed: () {
               Navigator.pushNamed(
                 context,
@@ -61,13 +74,24 @@ class StackEX extends StatelessWidget {
                 },
               );
             },
-            child: const Text('Next'),
+            child: const SizedBox(
+              width: double.infinity,
+              child: Text(
+                'Next',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+            ),
           ),
         ),
         const SizedBox(
           height: 30,
         ),
         const SwitchScreen(),
+        const DropDownEx()
       ],
     );
   }

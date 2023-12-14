@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/image_ex.dart';
+import 'package:login_page/slider.dart';
 import 'package:login_page/stack_ex.dart';
-import 'package:login_page/tab_first_screen.dart';
-import 'package:login_page/tab_second_screen.dart';
+// import 'package:login_page/tab_first_screen.dart';
+// import 'package:login_page/tab_second_screen.dart';
 // import 'package:login_page/utils/routes_name.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,8 +18,8 @@ class _HomePageState extends State<HomePage> {
 
   var widgetList = [
     const StackEX(),
-    const TabFirstScreen(),
-    const TabSecondScreen(),
+    const MyHomePage(),
+    const SliderScreen(),
   ];
 
   @override

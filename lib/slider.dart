@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:login_page/utils/routes_name.dart';
 
 class SliderScreen extends StatefulWidget {
@@ -9,8 +10,8 @@ class SliderScreen extends StatefulWidget {
 }
 
 class _SliderScreenState extends State<SliderScreen> {
-  int _value = 6;
-  RangeValues _currentRangeValues = const RangeValues(20, 60);
+  // int _value = 6;
+  // RangeValues _currentRangeValues = const RangeValues(20, 60);
 
   @override
 
@@ -79,7 +80,7 @@ class _SliderScreenState extends State<SliderScreen> {
   }
 
   */
-
+  /*
   //Range Slider
 
   Widget build(BuildContext context) {
@@ -146,36 +147,55 @@ class _SliderScreenState extends State<SliderScreen> {
     );
   }
 
-  /* Image Slider
+  */
+
+  //Image Slider
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Flutter Image Slider Demo"),
+      body: Column(
+        children: [
+          Container(
+              padding: const EdgeInsets.all(10),
+              margin: const EdgeInsets.all(5),
+              alignment: Alignment.center,
+              constraints: const BoxConstraints.expand(height: 225),
+              child: imageSlider(context)),
+          Container(
+            alignment: Alignment.center,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  RoutesName.thirdPage,
+                  arguments: {
+                    'Name': 'Viraj',
+                    'Surname': 'Vasani',
+                  },
+                );
+              },
+              child: const Text('Next'),
+            ),
+          ),
+        ],
       ),
-      body: Container(
-          padding: EdgeInsets.all(10),
-          margin: EdgeInsets.all(5),
-          alignment: Alignment.center,
-          constraints: BoxConstraints.expand(height: 225),
-          child: imageSlider(context)),
     );
   }
+
+  var images = ["assets/images/pxfuel.jpg", "assets/images/temp.jpg"];
 
   Swiper imageSlider(context) {
     return Swiper(
-      autoplay: true,
       itemBuilder: (BuildContext context, int index) {
-        return Image.network(
-          "https://lh3.googleusercontent.com/wIcl3tehFmOUpq-Jl3hlVbZVFrLHePRtIDWV5lZwBVDr7kEAgLTChyvXUclMVQDRHDEcDhY=w640-h400-e365-rj-sc0x00ffffff",
-          fit: BoxFit.fitHeight,
+        return Image.asset(
+          images[index],
+          fit: BoxFit.fill,
         );
       },
-      itemCount: 10,
-      viewportFraction: 0.7,
-      scale: 0.8,
+      autoplay: true,
+      itemCount: images.length,
+      pagination: const SwiperPagination(),
+      control: const SwiperControl(),
     );
   }
-
-  */
 }

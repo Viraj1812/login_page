@@ -8,4 +8,5 @@ class RoutesName {
   static const String linearProgress = 'linear_Progress';
   static const String tabber = 'tabber';
   static const String slider = 'slider';
+  static const String card = 'card';
 }

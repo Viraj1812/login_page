@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/switch_screen.dart';
 import 'package:login_page/utils/routes_name.dart';
 
 class StackEX extends StatelessWidget {
@@ -63,6 +64,10 @@ class StackEX extends StatelessWidget {
             child: const Text('Next'),
           ),
         ),
+        const SizedBox(
+          height: 30,
+        ),
+        const SwitchScreen(),
       ],
     );
   }

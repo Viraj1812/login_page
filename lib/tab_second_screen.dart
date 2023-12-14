@@ -19,7 +19,7 @@ class TabSecondScreen extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, RoutesName.slider);
+              Navigator.pushNamed(context, RoutesName.card);
             },
             child: const Text(
               'Next',

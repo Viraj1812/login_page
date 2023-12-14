@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/card_ex.dart';
 import 'package:login_page/forth_page.dart';
 import 'package:login_page/home_page.dart';
 import 'package:login_page/linear_progress.dart';
@@ -36,6 +37,8 @@ class Routes {
         return MaterialPageRoute(builder: (context) => const Tabber());
       case RoutesName.slider:
         return MaterialPageRoute(builder: (context) => const SliderScreen());
+      case RoutesName.card:
+        return MaterialPageRoute(builder: (context) => const CardEx());
       default:
         return MaterialPageRoute(builder: (context) {
           return const Scaffold(

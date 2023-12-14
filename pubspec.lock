@@ -49,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  custom_switch_widget:
+    dependency: "direct main"
+    description:
+      name: custom_switch_widget
+      sha256: "9b0ea07bdaa8837c67a9d7f69085edd35efe677a06284040e2655a70b49e1b24"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:

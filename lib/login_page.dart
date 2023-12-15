@@ -133,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
   void _handleLogin() {
     Navigator.pushNamedAndRemoveUntil(
       context,
-      RoutesName.homePage,
+      RoutesName.registrationPage,
       (Route<dynamic> route) => false,
     );
   }

@@ -4,6 +4,7 @@ import 'package:login_page/forth_page.dart';
 import 'package:login_page/home_page.dart';
 import 'package:login_page/linear_progress.dart';
 import 'package:login_page/login_page.dart';
+import 'package:login_page/registration_form.dart';
 import 'package:login_page/second_page.dart';
 import 'package:login_page/slider.dart';
 import 'package:login_page/splash_screen.dart';
@@ -18,6 +19,9 @@ class Routes {
         return MaterialPageRoute(builder: (context) => const SplashScreen());
       case RoutesName.loginPage:
         return MaterialPageRoute(builder: (context) => const LoginPage());
+      case RoutesName.registrationPage:
+        return MaterialPageRoute(
+            builder: (context) => const RegistrationForm());
       case RoutesName.homePage:
         return MaterialPageRoute(builder: (context) => const HomePage());
       case RoutesName.secondPage:

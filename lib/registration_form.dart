@@ -15,7 +15,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
   final TextEditingController _mobileController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
 
-  String _selectedUserType = 'Admin';
+  String _selectedUserType = 'Select Type';
   String _selectedGender = '';
   final List<String> _selectedHobbies = [];
   FocusNode f1 = FocusNode();
@@ -23,7 +23,12 @@ class _RegistrationFormState extends State<RegistrationForm> {
   FocusNode f3 = FocusNode();
   FocusNode f4 = FocusNode();
 
-  final List<String> _userTypes = ['Admin', 'User', 'Super Admin'];
+  final List<String> _userTypes = [
+    'Select Type',
+    'Admin',
+    'User',
+    'Super Admin'
+  ];
   final List<String> _genders = ['Male', 'Female'];
   final List<String> _hobbies = [
     'Reading',
@@ -148,7 +153,11 @@ class _RegistrationFormState extends State<RegistrationForm> {
         maxLines: 3,
         validator: (value) {
           if (value!.isEmpty) {
-            return 'Address is required';
+            return 'Address cannot be empty';
+          } else if (value.length > 250) {
+            return 'Address cannot be more than 250 characters';
+          } else if (value.length < 50) {
+            return 'Address cannot be less than 50 characters';
           }
           return null;
         },
@@ -161,6 +170,12 @@ class _RegistrationFormState extends State<RegistrationForm> {
           setState(() {
             _selectedUserType = value!;
           });
+        },
+        validator: (value) {
+          if (value == 'Select Type') {
+            return 'Please select a user type';
+          }
+          return null;
         },
         items: _userTypes.map((type) {
           return DropdownMenuItem(
@@ -237,8 +252,16 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      Navigator.pushNamed(context, RoutesName.homePage);
-      _showToast(context, 'REGISTRATION SUCCESSFUL');
+      String? validationResult = validateGender(_selectedGender);
+
+      if (validationResult != null) {
+        _showToast(context, validationResult);
+      } else if (_selectedHobbies.length < 2) {
+        _showToast(context, 'Please select more than 2 hobbies');
+      } else {
+        Navigator.pushNamed(context, RoutesName.homePage);
+        _showToast(context, 'REGISTRATION SUCCESSFUL');
+      }
     }
   }
 
@@ -257,6 +280,13 @@ class _RegistrationFormState extends State<RegistrationForm> {
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snackbar);
+  }
+
+  String? validateGender(String value) {
+    if (value.isEmpty) {
+      return 'Please select a gender';
+    }
+    return null; // Gender is valid
   }
 
   bool validateMobileNumber(String mobileNumber) {

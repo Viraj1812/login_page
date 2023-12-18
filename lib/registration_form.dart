@@ -166,6 +166,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   Widget _buildUserType() => DropdownButtonFormField(
         value: _selectedUserType,
+        focusNode: null,
         onChanged: (value) {
           setState(() {
             _selectedUserType = value!;
